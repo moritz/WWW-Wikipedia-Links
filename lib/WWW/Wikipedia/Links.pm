@@ -97,14 +97,13 @@ sub _extract_from_dom {
 
 Moritz Lenz, C<< <moritz at faui2k3.org> >>
 
-=head1 BUGS
+=head1 BUGS AND DEVELOPMENT
 
-Please report any bugs or feature requests to C<bug-www-wikipedia-links at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-Wikipedia-Links>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+Please report any bugs or feature requests at
+L<https://github.com/moritz/WWW-Wikipedia-Links/issues>
 
-
-
+Development happens at github, you can seen (and modify)
+the latest source code at L<https://github.com/moritz/WWW-Wikipedia-Links>.
 
 =head1 SUPPORT
 
@@ -117,9 +116,9 @@ You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker (report bugs here)
+=item * Bug tracker (report bugs here)
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-Wikipedia-Links>
+L<https://github.com/moritz/WWW-Wikipedia-Links/issues>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
