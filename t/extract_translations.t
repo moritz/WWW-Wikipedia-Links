@@ -1,5 +1,5 @@
 use lib 'lib';
-use Test::More tests => 3;
+use Test::More tests => 4;
 use WWW::Wikipedia::Links;
 use Mojo::DOM;
 use utf8;
@@ -26,6 +26,8 @@ is $titles,
     'Ralf Isau|Ralf Isau|Ralf Isau|ラルフ・イーザウ|Ralf Isau',
     'extracted the right titles';
 
+is $res->{license}, 'http://creativecommons.org/licenses/by-sa/3.0/',
+    'extracted license URL';
 
 
 __DATA__

@@ -66,6 +66,14 @@ sub _extract_from_dom {
         } );
     }
 
+    # license
+    {
+        my $c = $dom->at('head link[rel="copyright"]');
+        if ($c) {
+            $res{license} = $c->attrs->{href};
+        }
+    }
+
     return \%res;
 
 }
