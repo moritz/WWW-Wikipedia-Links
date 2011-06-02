@@ -4,10 +4,12 @@ use 5.008002;
 use strict;
 use warnings;
 use Mojo::UserAgent;
+use Exporter qw/import/;
+our @EXPORT_OK = qw/wiki_links/;
 
 =head1 NAME
 
-WWW::Wikipedia::Links - The great new WWW::Wikipedia::Links!
+WWW::Wikipedia::Links - Extract links from Wikipedia pages
 
 =head1 VERSION
 
@@ -15,7 +17,7 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
@@ -39,6 +41,26 @@ Function C<wiki_links> is be exported if requested.
 =head1 SUBROUTINES
 
 =head2 wiki_links
+
+    my $res = wiki_links $wiki_url;
+
+Returns a hash ref of the following structure. Any fields may be missinf
+if the information could not be extracted.
+    
+    my $res = {
+        license => $link_to_license_page,
+        official_website => $official_website,
+        translations => [
+            {
+                lang  => $wiki_language_code,
+                url   => $translation_url,
+                title => $title_of_translation_page,
+            }, 
+            ...
+        ],
+    };
+
+The behavior in the case of an error is not yet defined.
 
 =cut
 
