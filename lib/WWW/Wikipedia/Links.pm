@@ -54,16 +54,18 @@ sub _extract_from_dom {
     # languages
     {
         my $langs = $dom->at('#p-lang');
-        $langs->find('li')->each( sub {
-            my $lang  = (split '-', $_->attrs->{class})[1];
-            my $url   =  $_->at('a')->attrs->{href};
-            my $title =  $_->at('a')->attrs->{title};
-            my %r;
-            $r{lang}   = $lang  if defined $lang;
-            $r{url}    = $url   if defined $url;
-            $r{title}  = $title if defined $title;
-            push @{ $res{translations} }, \%r if %r;
-        } );
+        if ($langs) {
+            $langs->find('li')->each( sub {
+                my $lang  = (split '-', $_->attrs->{class})[1];
+                my $url   =  $_->at('a')->attrs->{href};
+                my $title =  $_->at('a')->attrs->{title};
+                my %r;
+                $r{lang}   = $lang  if defined $lang;
+                $r{url}    = $url   if defined $url;
+                $r{title}  = $title if defined $title;
+                push @{ $res{translations} }, \%r if %r;
+            } );
+        }
     }
 
     # license
@@ -71,6 +73,20 @@ sub _extract_from_dom {
         my $c = $dom->at('head link[rel="copyright"]');
         if ($c) {
             $res{license} = $c->attrs->{href};
+        }
+    }
+
+    # official homepage
+    {
+        my $vcard = $dom->at('table.vcard');
+        if ($vcard) {
+            for ($vcard->find('tr')->each) {
+                # TODO: make more robust against different languages
+                if ($_->all_text =~ /Official website/) {
+                    $res{official_website} = $_->at('a')->attrs->{href};
+                    last;
+                }
+            }
         }
     }
 
